@@ -1,0 +1,227 @@
+.quiz-config-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+}
+
+.quiz-config-card {
+  padding: 2rem;
+}
+
+.config-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.config-subtitle {
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.config-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.config-section {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  background: var(--bg-secondary);
+}
+
+.config-section-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.config-section-description {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+.config-option {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.config-option:last-child {
+  margin-bottom: 0;
+}
+
+.config-option select {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.config-select {
+  padding: 0.75rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  background: white;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.config-select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.config-help {
+  display: block;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  padding-left: 0.5rem;
+  border-left: 3px solid var(--primary-color);
+}
+
+.config-option {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.config-option input[type="checkbox"] {
+  margin-top: 0.25rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  cursor: pointer;
+}
+
+.config-option label {
+  flex: 1;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.config-option label strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.config-option label span {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.config-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+  .quiz-config-container {
+    margin: 1rem 0.5rem;
+  }
+
+  .quiz-config-card {
+    padding: 1.5rem;
+  }
+
+  .config-title {
+    font-size: 1.5rem;
+  }
+
+  .config-subtitle {
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .config-options {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .config-option {
+    gap: 0.75rem;
+  }
+
+  .config-option input[type="checkbox"] {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+
+  .config-option label strong {
+    font-size: 0.9375rem;
+  }
+
+  .config-option label span {
+    font-size: 0.8125rem;
+  }
+
+  .input-group {
+    padding-left: 0;
+  }
+
+  .input-group label {
+    font-size: 0.875rem;
+  }
+
+  .input-group input {
+    font-size: 0.9375rem;
+    padding: 0.625rem;
+  }
+
+  .config-actions {
+    flex-direction: column-reverse;
+    gap: 0.75rem;
+  }
+
+  .config-actions button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .quiz-config-container {
+    margin: 0.75rem 0.25rem;
+  }
+
+  .quiz-config-card {
+    padding: 1.25rem;
+  }
+
+  .config-title {
+    font-size: 1.25rem;
+  }
+
+  .config-subtitle {
+    font-size: 0.8125rem;
+  }
+
+  .config-options {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .config-option input[type="checkbox"] {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .config-option label strong {
+    font-size: 0.875rem;
+  }
+
+  .config-option label span {
+    font-size: 0.75rem;
+  }
+}

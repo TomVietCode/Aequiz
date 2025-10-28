@@ -1,0 +1,303 @@
+[
+  {
+    "questionText": "All employees are required to attend the mandatory safety training session scheduled for next Monday unless they have ----- received a certificate.",
+    "options": ["already", "yet", "still", "soon"],
+    "correctAnswer": 0,
+    "explanation": "Chọn 'already' (đã/rồi) vì nó diễn tả một hành động đã xảy ra trước một thời điểm nhất định trong quá khứ hoặc hiện tại. Trong ngữ cảnh này, thì hiện tại hoàn thành (have received) kết hợp với 'already' để nhấn mạnh việc đã nhận được chứng chỉ từ trước. 'Yet' thường dùng trong câu phủ định và nghi vấn. 'Still' nhấn mạnh sự tiếp diễn. 'Soon' chỉ một việc sắp xảy ra."
+  },
+  {
+    "questionText": "The new marketing campaign was ----- more successful than the previous one, leading to a 20% increase in sales.",
+    "options": ["considerable", "considerably", "considers", "consideration"],
+    "correctAnswer": 1,
+    "explanation": "Đây là câu hỏi về từ loại. Chúng ta cần một trạng từ (adverb) để bổ nghĩa cho tính từ so sánh hơn 'more successful'. 'Considerably' (một cách đáng kể) là trạng từ. 'Considerable' là tính từ, 'considers' là động từ, và 'consideration' là danh từ."
+  },
+  {
+    "questionText": "Ms. Chen is looking for a new assistant ----- can manage complex schedules and has experience with database software.",
+    "options": ["what", "who", "which", "whose"],
+    "correctAnswer": 1,
+    "explanation": "Câu này kiểm tra về mệnh đề quan hệ. Chúng ta cần một đại từ quan hệ chỉ người ('a new assistant') và làm chủ ngữ cho động từ 'can manage'. 'Who' là đại từ quan hệ phù hợp trong trường hợp này. 'Which' dùng cho vật, 'whose' dùng để chỉ sự sở hữu."
+  },
+  {
+    "questionText": "Please make sure your report is submitted ----- the end of the workday this Friday.",
+    "options": ["by", "until", "since", "within"],
+    "correctAnswer": 0,
+    "explanation": "Giới từ 'by' (trước/chậm nhất là) được sử dụng để chỉ một hạn chót (deadline). Câu này có nghĩa là báo cáo phải được nộp chậm nhất là vào cuối ngày làm việc thứ Sáu. 'Until' (cho đến khi) chỉ một khoảng thời gian kéo dài và kết thúc tại một điểm. 'Within' (trong vòng) chỉ một khoảng thời gian nhưng không phải là hạn chót cụ thể."
+  },
+  {
+    "questionText": "If the printer ----- again, please contact the IT department for assistance.",
+    "options": ["malfunction", "malfunctions", "malfunctioning", "is malfunctioned"],
+    "correctAnswer": 1,
+    "explanation": "Đây là câu điều kiện loại 1 (If + S + V(s/es), S + will/can/may + V). Mệnh đề 'if' chia ở thì hiện tại đơn. Chủ ngữ là 'the printer' (ngôi thứ ba số ít), vì vậy động từ phải thêm 's'. 'Malfunctions' là đáp án đúng."
+  },
+
+  {
+    "questionText": "The management team decided to ----- the meeting until next week due to a scheduling conflict.",
+    "options": ["postpone", "cancel", "arrange", "confirm"],
+    "correctAnswer": 0,
+    "explanation": "Dựa vào cụm từ 'until next week' (cho đến tuần sau), ta hiểu rằng cuộc họp bị hoãn lại chứ không phải hủy bỏ. 'Postpone' có nghĩa là trì hoãn, là lựa chọn phù hợp nhất. 'Cancel' là hủy bỏ, 'arrange' là sắp xếp, 'confirm' là xác nhận."
+  },
+  {
+    "questionText": "Because of the recent economic downturn, the company has to be more ----- with its spending.",
+    "options": ["frugal", "wasteful", "generous", "abundant"],
+    "correctAnswer": 0,
+    "explanation": "Cụm từ 'economic downturn' (suy thoái kinh tế) gợi ý rằng công ty cần phải chi tiêu cẩn thận hơn. 'Frugal' có nghĩa là tiết kiệm, tằn tiện, phù hợp với ngữ cảnh. 'Wasteful' là lãng phí, 'generous' là hào phóng, 'abundant' là dồi dào."
+  },
+  {
+    "questionText": "All visitors must sign in at the front desk upon ----- to the building.",
+    "options": ["arrive", "arrived", "arrival", "arriving"],
+    "correctAnswer": 2,
+    "explanation": "Sau giới từ 'upon', chúng ta cần một danh từ hoặc V-ing (danh động từ). 'Arrival' (sự đến) là một danh từ và là lựa chọn chính xác trong cấu trúc này. Cụm 'upon arrival' là một cụm từ cố định có nghĩa là 'ngay khi đến'."
+  },
+  {
+    "questionText": "Mr. Kim has been a ----- employee of this company for over twenty years and is highly respected.",
+    "options": ["dedicate", "dedicating", "dedicated", "dedication"],
+    "correctAnswer": 2,
+    "explanation": "Chúng ta cần một tính từ để bổ nghĩa cho danh từ 'employee'. 'Dedicated' (tận tụy, cống hiến) là một tính từ (dạng V-ed) và là đáp án đúng. 'Dedicate' là động từ, 'dedication' là danh từ."
+  },
+  {
+    "questionText": "----- the bad weather, the annual company picnic has been moved indoors.",
+    "options": ["Although", "Because", "Despite", "Due to"],
+    "correctAnswer": 3,
+    "explanation": "Sau chỗ trống là một cụm danh từ 'the bad weather', không phải là một mệnh đề. Do đó, ta cần một giới từ. 'Due to' (bởi vì) là một giới từ và phù hợp về mặt ngữ nghĩa. 'Although', 'Because' là liên từ, theo sau là một mệnh đề (S+V). 'Despite' cũng là giới từ nhưng mang nghĩa 'mặc dù', không hợp nghĩa."
+  },
+  {
+    "questionText": "The final version of the contract must be approved by the legal department before it can be ----- to the client.",
+    "options": ["send", "sending", "sent", "sends"],
+    "correctAnswer": 2,
+    "explanation": "Câu này sử dụng cấu trúc bị động với động từ khuyết thiếu: 'can be + V3/ed'. Động từ 'send' ở dạng quá khứ phân từ là 'sent'. Do đó, 'sent' là đáp án chính xác."
+  },
+  {
+    "questionText": "The seminar on financial planning is open to all employees, ----- of their position in the company.",
+    "options": ["regardless", "regarding", "without", "in spite"],
+    "correctAnswer": 0,
+    "explanation": "Cụm từ 'regardless of' là một cụm cố định có nghĩa là 'bất kể, không phân biệt'. Đây là đáp án phù hợp nhất với ngữ cảnh của câu. 'Regarding' nghĩa là 'liên quan đến'."
+  },
+  {
+    "questionText": "To remain competitive, our company must ----- to the latest technological advancements.",
+    "options": ["adapt", "adopt", "adept", "addict"],
+    "correctAnswer": 0,
+    "explanation": "Đây là câu hỏi về từ vựng. 'Adapt to' có nghĩa là 'thích nghi với', phù hợp với ngữ cảnh phải thay đổi để theo kịp công nghệ. 'Adopt' nghĩa là 'áp dụng, nhận làm con nuôi'. 'Adept' là một tính từ có nghĩa là 'thành thạo'. 'Addict' là người nghiện."
+  },
+  {
+    "questionText": "The survey results indicate that customer satisfaction has improved ----- since the new policies were implemented.",
+    "options": ["signify", "significant", "significantly", "significance"],
+    "correctAnswer": 2,
+    "explanation": "Chúng ta cần một trạng từ để bổ nghĩa cho động từ 'has improved'. 'Significantly' (một cách đáng kể) là trạng từ. 'Significant' là tính từ, 'signify' là động từ, 'significance' là danh từ."
+  },
+  {
+    "questionText": "Neither the manager ----- his assistant was available to comment on the rumor.",
+    "options": ["or", "nor", "and", "but"],
+    "correctAnswer": 1,
+    "explanation": "Đây là cấu trúc liên từ tương quan 'Neither... nor...' (Không... cũng không...). Khi có 'Neither' ở đầu, vế sau phải đi với 'nor'. Động từ 'was' chia theo chủ ngữ thứ hai ('his assistant')."
+  },
+  {
+    "questionText": "The sales team is confident ----- it will meet its quarterly targets.",
+    "options": ["that", "whether", "if", "what"],
+    "correctAnswer": 0,
+    "explanation": "Sau tính từ 'confident', chúng ta sử dụng 'that' để bắt đầu một mệnh đề danh ngữ, giải thích cho sự tự tin đó. 'Confident that...' (tự tin rằng...). 'Whether' và 'if' dùng trong câu hỏi có/không gián tiếp."
+  },
+  {
+    "questionText": "The new software update includes several ----- designed to improve system security.",
+    "options": ["enhance", "enhances", "enhanced", "enhancements"],
+    "correctAnswer": 3,
+    "explanation": "Sau tính từ 'several', chúng ta cần một danh từ đếm được ở dạng số nhiều. 'Enhancements' (sự cải tiến, sự nâng cấp) là danh từ số nhiều phù hợp. 'Enhance' là động từ, 'enhanced' là tính từ/V-ed."
+  },
+  {
+    "questionText": "Please complete the attached form and return it at your ----- convenience.",
+    "options": ["early", "earlier", "earliest", "earliness"],
+    "correctAnswer": 2,
+    "explanation": "Cụm từ 'at your earliest convenience' là một thành ngữ cố định trong văn phong trang trọng, có nghĩa là 'vào lúc thuận tiện nhất cho bạn'. Chúng ta dùng dạng so sánh nhất của tính từ 'early'."
+  },
+  {
+    "questionText": "Our flight was delayed, so we arrived at the conference ----- than we had expected.",
+    "options": ["late", "later", "latest", "lately"],
+    "correctAnswer": 1,
+    "explanation": "Sự xuất hiện của 'than' cho thấy đây là một cấu trúc so sánh hơn. 'Later' (muộn hơn) là dạng so sánh hơn của trạng từ 'late'. 'Lately' có nghĩa là 'gần đây' và không phù hợp."
+  },
+  {
+    "questionText": "Dr. Evans is an expert in her field and has published ----- articles in academic journals.",
+    "options": ["numerator", "numerous", "numerical", "numerate"],
+    "correctAnswer": 1,
+    "explanation": "Chúng ta cần một tính từ để bổ nghĩa cho danh từ 'articles'. 'Numerous' (nhiều, vô số) là tính từ phù hợp nhất về mặt ngữ nghĩa. 'Numerical' có nghĩa là 'thuộc về số'."
+  },
+  {
+    "questionText": "The renovation of the main lobby is expected to ----- for at least two weeks.",
+    "options": ["last", "finish", "end", "complete"],
+    "correctAnswer": 0,
+    "explanation": "Động từ 'last' có nghĩa là 'kéo dài' (trong một khoảng thời gian), đây là lựa chọn phù hợp nhất để đi với 'for at least two weeks'. Các động từ còn lại thường không đi với cấu trúc 'for + khoảng thời gian' theo cách này."
+  },
+  {
+    "questionText": "Access to the server room is ----- to authorized personnel only.",
+    "options": ["restricted", "restriction", "restricts", "restrictive"],
+    "correctAnswer": 0,
+    "explanation": "Sau động từ 'to be' (is), chúng ta cần một tính từ hoặc một động từ ở dạng bị động (V3/ed). Cấu trúc 'be restricted to' (bị giới hạn cho) là một cấu trúc bị động phổ biến và phù hợp với ngữ cảnh. 'Restricted' ở đây đóng vai trò như một tính từ."
+  },
+  {
+    "questionText": "Ms. Weaver is responsible for ----- all international shipments and ensuring they clear customs.",
+    "options": ["oversee", "overseeing", "oversaw", "overseen"],
+    "correctAnswer": 1,
+    "explanation": "Sau giới từ 'for', động từ phải ở dạng V-ing (danh động từ). Do đó, 'overseeing' (giám sát) là đáp án chính xác. Cấu trúc 'be responsible for doing something'."
+  },
+  {
+    "questionText": "The factory was forced to shut down ----- due to a major equipment failure.",
+    "options": ["temporary", "temporarily", "temporal", "temporariness"],
+    "correctAnswer": 1,
+    "explanation": "Chúng ta cần một trạng từ để bổ nghĩa cho động từ 'shut down'. 'Temporarily' (một cách tạm thời) là trạng từ. 'Temporary' là tính từ."
+  },
+  {
+    "questionText": "Participants in the workshop will have the opportunity to interact ----- with industry leaders.",
+    "options": ["direct", "directly", "direction", "director"],
+    "correctAnswer": 1,
+    "explanation": "Chúng ta cần một trạng từ để bổ nghĩa cho động từ 'interact'. 'Directly' (một cách trực tiếp) là trạng từ. 'Direct' có thể là tính từ hoặc động từ."
+  },
+  {
+    "questionText": "The new manager has implemented a system to help ----- employee performance.",
+    "options": ["evaluate", "evaluation", "evaluative", "evaluator"],
+    "correctAnswer": 0,
+    "explanation": "Sau động từ 'help', chúng ta có thể dùng động từ nguyên mẫu có 'to' hoặc không 'to'. 'Evaluate' (đánh giá) là động từ nguyên mẫu và là đáp án đúng. 'Evaluation' là danh từ."
+  },
+  {
+    "questionText": "Any information you provide will be kept strictly ----- and will not be shared with third parties.",
+    "options": ["confidential", "confide", "confidently", "confidence"],
+    "correctAnswer": 0,
+    "explanation": "Sau động từ 'kept', chúng ta cần một tính từ để mô tả trạng thái của 'information'. Cấu trúc 'keep something + adj'. 'Confidential' (bảo mật, bí mật) là tính từ. 'Confidently' là trạng từ."
+  },
+  {
+    "questionText": "A full refund will be issued ----- you return the merchandise in its original condition within 30 days.",
+    "options": ["only if", "even though", "as if", "whether"],
+    "correctAnswer": 0,
+    "explanation": "'Only if' (chỉ khi) được dùng để diễn tả một điều kiện tiên quyết. Việc hoàn tiền chỉ xảy ra với điều kiện hàng hóa được trả lại trong tình trạng ban đầu. Đây là lựa chọn hợp lý nhất. 'Even though' (mặc dù) không hợp nghĩa."
+  },
+  {
+    "questionText": "The CEO gave an ----- speech that motivated the entire team.",
+    "options": ["inspire", "inspiring", "inspired", "inspiration"],
+    "correctAnswer": 1,
+    "explanation": "Chúng ta cần một tính từ để bổ nghĩa cho danh từ 'speech'. Tính từ đuôi '-ing' ('inspiring') dùng để mô tả bản chất của sự vật, sự việc (bài phát biểu này có tính chất truyền cảm hứng). Tính từ đuôi '-ed' ('inspired') dùng để mô tả cảm xúc của người (ai đó cảm thấy được truyền cảm hứng)."
+  },
+  {
+    "questionText": "All expense reports must be submitted along with the ----- receipts for reimbursement.",
+    "options": ["correspond", "corresponding", "corresponded", "correspondence"],
+    "correctAnswer": 1,
+    "explanation": "Chúng ta cần một tính từ để bổ nghĩa cho danh từ 'receipts'. 'Corresponding' (tương ứng) là một tính từ (dạng V-ing) và là đáp án đúng. Nó có nghĩa là những hóa đơn tương ứng với các khoản chi."
+  },
+  {
+    "questionText": "The success of the project depends ----- on effective communication between departments.",
+    "options": ["heavily", "heavy", "heaviness", "heavier"],
+    "correctAnswer": 0,
+    "explanation": "Chúng ta cần một trạng từ để bổ nghĩa cho động từ 'depends'. 'Heavily' (nhiều, nặng nề) là trạng từ và thường đi với 'depend' để tạo thành cụm 'depend heavily on' (phụ thuộc rất nhiều vào)."
+  },
+  {
+    "questionText": "It is ----- that all employees read the new safety guidelines carefully.",
+    "options": ["imperative", "imperatively", "imperativeness", "imperial"],
+    "correctAnswer": 0,
+    "explanation": "Sau 'It is...', chúng ta cần một tính từ. 'Imperative' (cấp bách, bắt buộc) là tính từ. Cấu trúc giả định: 'It is + imperative/important/necessary + that + S + (should) + V-inf'."
+  },
+  {
+    "questionText": "The company offers a ----- benefits package, including health insurance and a retirement plan.",
+    "options": ["comprehend", "comprehensive", "comprehension", "comprehensively"],
+    "correctAnswer": 1,
+    "explanation": "Chúng ta cần một tính từ để bổ nghĩa cho cụm danh từ 'benefits package'. 'Comprehensive' (toàn diện) là tính từ phù hợp. 'Comprehensively' là trạng từ."
+  },
+  {
+    "questionText": "Having ----- the market research, the team was able to develop a more effective strategy.",
+    "options": ["complete", "completed", "completing", "completion"],
+    "correctAnswer": 1,
+    "explanation": "Đây là cấu trúc mệnh đề phân từ (participle clause) dạng rút gọn. Dạng chủ động và hành động đã hoàn thành trước hành động chính nên dùng 'Having + V3/ed'. 'Having completed' (Sau khi đã hoàn thành) là đáp án đúng."
+  },
+  {
+    "questionText": "The workshop is designed to help entrepreneurs ----- their business skills.",
+    "options": ["sharpen", "sharp", "sharply", "sharpness"],
+    "correctAnswer": 0,
+    "explanation": "Sau động từ 'help', chúng ta có thể dùng động từ nguyên mẫu có 'to' hoặc không 'to'. 'Sharpen' (mài giũa, cải thiện) là động từ nguyên mẫu. 'Sharp' là tính từ."
+  },
+  {
+    "questionText": "We apologize for any ----- this may have caused our customers.",
+    "options": ["inconvenient", "inconvenience", "inconveniently", "convene"],
+    "correctAnswer": 1,
+    "explanation": "Sau tính từ 'any', chúng ta cần một danh từ. 'Inconvenience' (sự bất tiện) là danh từ. 'Inconvenient' là tính từ."
+  },
+  {
+    "questionText": "The research and development team works ----- with the marketing department to create new products.",
+    "options": ["close", "closer", "closest", "closely"],
+    "correctAnswer": 3,
+    "explanation": "Chúng ta cần một trạng từ để bổ nghĩa cho động từ 'works'. 'Closely' (một cách chặt chẽ) là trạng từ. 'Close' cũng có thể là trạng từ nhưng mang nghĩa là 'gần về khoảng cách'."
+  },
+  {
+    "questionText": "The hotel is ----- located within walking distance of the convention center.",
+    "options": ["convenience", "convenient", "conveniently", "convene"],
+    "correctAnswer": 2,
+    "explanation": "Chúng ta cần một trạng từ để bổ nghĩa cho động từ 'located'. 'Conveniently' (một cách thuận tiện) là trạng từ. 'Convenient' là tính từ."
+  },
+  {
+    "questionText": "Due to unforeseen -----, the keynote speaker had to cancel her appearance.",
+    "options": ["circumstances", "circumstantial", "circumvent", "circle"],
+    "correctAnswer": 0,
+    "explanation": "Sau tính từ 'unforeseen', chúng ta cần một danh từ. 'Circumstances' (hoàn cảnh, tình huống) là danh từ số nhiều phù hợp. Cụm 'unforeseen circumstances' là một cụm từ phổ biến."
+  },
+  {
+    "questionText": "The two companies announced their plans to ----- into a single, larger entity.",
+    "options": ["merge", "merger", "merged", "merging"],
+    "correctAnswer": 0,
+    "explanation": "Sau 'to' trong 'plans to', chúng ta cần một động từ nguyên mẫu. 'Merge' (sáp nhập) là động từ nguyên mẫu. 'Merger' là danh từ."
+  },
+  {
+    "questionText": "The technician was able to ----- the problem with the computer network quickly.",
+    "options": ["identity", "identify", "identification", "identical"],
+    "correctAnswer": 1,
+    "explanation": "Sau 'to' trong 'able to', chúng ta cần một động từ nguyên mẫu. 'Identify' (xác định, nhận dạng) là động từ. 'Identity' và 'identification' là danh từ."
+  },
+  {
+    "questionText": "The monthly newsletter provides ----- information on industry trends and company news.",
+    "options": ["value", "values", "valuable", "valuation"],
+    "correctAnswer": 2,
+    "explanation": "Chúng ta cần một tính từ để bổ nghĩa cho danh từ 'information'. 'Valuable' (quý giá, có giá trị) là tính từ. 'Value' có thể là danh từ hoặc động từ."
+  },
+  {
+    "questionText": "Please ----- from using mobile phones during the presentation.",
+    "options": ["refrain", "prevent", "avoid", "stop"],
+    "correctAnswer": 0,
+    "explanation": "Động từ 'refrain' thường đi với giới từ 'from' (refrain from doing something) có nghĩa là 'kiềm chế, cố nhịn không làm gì'. Đây là cấu trúc phù hợp nhất. Các động từ còn lại không đi với 'from' theo cách này."
+  },
+  {
+    "questionText": "The building's security system is automatically activated ----- sunset.",
+    "options": ["at", "on", "in", "by"],
+    "correctAnswer": 0,
+    "explanation": "Giới từ 'at' được dùng với những thời điểm cụ thể trong ngày như 'at noon', 'at night', 'at midnight', và cũng dùng với 'at sunset' (vào lúc hoàng hôn) và 'at sunrise' (vào lúc bình minh)."
+  },
+  {
+    "questionText": "This offer is ----- only to subscribers of our weekly magazine.",
+    "options": ["apply", "applicable", "application", "applicant"],
+    "correctAnswer": 1,
+    "explanation": "Sau động từ 'to be' (is), chúng ta cần một tính từ. 'Applicable' (có thể áp dụng) là tính từ và thường đi với giới từ 'to'. Cấu trúc 'be applicable to sb/sth'."
+  },
+  {
+    "questionText": "The factory has increased its production ----- in response to growing demand.",
+    "options": ["capable", "capability", "capably", "capacity"],
+    "correctAnswer": 3,
+    "explanation": "Chúng ta cần một danh từ sau tính từ sở hữu 'its'. 'Capacity' (công suất, sức chứa) là danh từ phù hợp nhất trong ngữ cảnh sản xuất. 'Capability' cũng là danh từ nhưng có nghĩa là 'khả năng, năng lực' chung chung."
+  },
+  {
+    "questionText": "The new line of products will be available for purchase ----- starting next month.",
+    "options": ["exclusive", "exclusively", "exclusion", "excluded"],
+    "correctAnswer": 1,
+    "explanation": "Chúng ta cần một trạng từ để bổ nghĩa cho cụm 'starting next month' hoặc toàn bộ câu. 'Exclusively' (độc quyền, chỉ) là trạng từ phù hợp. Tuy nhiên, trong câu này, nó bổ nghĩa cho việc 'available for purchase', có nghĩa là chỉ có thể mua được từ tháng sau."
+  },
+  {
+    "questionText": "Anyone who ----- to participate in the charity run should sign up by Friday.",
+    "options": ["wish", "wishes", "wishing", "is wished"],
+    "correctAnswer": 1,
+    "explanation": "Chủ ngữ là 'Anyone', là một đại từ bất định và được coi là danh từ số ít. Do đó, động từ ở thì hiện tại đơn phải thêm 's'. 'Wishes' là đáp án đúng."
+  },
+  {
+    "questionText": "The terms of the agreement are ----- and not open to negotiation.",
+    "options": ["final", "finally", "finalize", "finalist"],
+    "correctAnswer": 0,
+    "explanation": "Sau động từ 'to be' (are), chúng ta cần một tính từ. 'Final' (cuối cùng, không thể thay đổi) là tính từ. 'Finally' là trạng từ."
+  },
+  {
+    "questionText": "Dr. Belastegui has a great deal of ----- in the field of renewable energy.",
+    "options": ["expert", "expertise", "expertly", "exported"],
+    "correctAnswer": 1,
+    "explanation": "Sau cụm từ 'a great deal of', chúng ta cần một danh từ không đếm được. 'Expertise' (chuyên môn, sự thành thạo) là danh từ không đếm được. 'Expert' là danh từ đếm được chỉ chuyên gia."
+  }
+]

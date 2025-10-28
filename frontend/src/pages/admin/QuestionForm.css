@@ -1,0 +1,154 @@
+.question-form {
+  background: var(--bg-secondary);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.question-set-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  padding: 1rem;
+  background: var(--bg-primary);
+  border-radius: 8px;
+}
+
+.set-title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.options-section {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: var(--bg-primary);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+}
+
+.badge-purple {
+  background: #9c27b0;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.question-type-selector {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.type-button {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.5rem;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+}
+
+.type-button:hover {
+  border-color: #6366f1;
+  background: #f9fafb;
+}
+
+.type-button.active {
+  border-color: #6366f1;
+  background: #eef2ff;
+}
+
+.type-icon {
+  font-size: 1.5rem;
+}
+
+.type-button strong {
+  display: block;
+  font-size: 0.9375rem;
+  color: #1f2937;
+  margin-bottom: 0.25rem;
+}
+
+.type-button small {
+  display: block;
+  font-size: 0.8125rem;
+  color: #6b7280;
+}
+
+.code-input {
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 0.875rem;
+  background: #1e293b;
+  color: #e2e8f0;
+  border: 1px solid #334155;
+}
+
+.code-input::placeholder {
+  color: #94a3b8;
+}
+
+.multiple-choice-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.multiple-choice-option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.375rem;
+  background: white;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.multiple-choice-option:hover {
+  border-color: #6366f1;
+  background: #f9fafb;
+}
+
+.multiple-choice-option input[type="checkbox"] {
+  width: 1.25rem;
+  height: 1.25rem;
+  cursor: pointer;
+  accent-color: #6366f1;
+}
+
+.checkbox-label {
+  flex: 1;
+  font-size: 0.9375rem;
+  color: #1f2937;
+}
+
+.checkbox-label strong {
+  color: #6366f1;
+  margin-right: 0.5rem;
+}
+
+.form-help {
+  font-size: 0.8125rem;
+  color: #6b7280;
+  margin-top: 0.5rem;
+  font-style: italic;
+}

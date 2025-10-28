@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.env
+*.log
+uploads/
+.DS_Store
+# SQLite database files
+*.db
+*.db-journal
+prisma/dev.db
+prisma/dev.db-journal

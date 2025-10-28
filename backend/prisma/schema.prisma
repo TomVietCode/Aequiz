@@ -1,0 +1,109 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   @default("STUDENT") // "ADMIN" or "STUDENT"
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  attempts  Attempt[]
+  createdQuestionSets QuestionSet[] @relation("CreatedBy")
+
+  @@map("users")
+}
+
+model QuestionSet {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  mode        String   // "TOEIC" or "SCHOOL"
+  timeLimit   Int?     // in seconds, optional
+  isPublished Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  creatorId   String
+  creator     User     @relation("CreatedBy", fields: [creatorId], references: [id])
+
+  questions   Question[]
+  attempts    Attempt[]
+
+  @@map("question_sets")
+}
+
+model Question {
+  id            String   @id @default(uuid())
+  questionText  String
+  options       String   // JSON string: ["Option A", "Option B", "Option C", "Option D"]
+  correctAnswer String   // JSON string: number or number[] (e.g., "1" or "[0,2,3]")
+  questionType  String?  @default("single") // "single" or "multiple"
+  codeBlock     String?  // Optional code block for programming questions
+  explanation   String?  // Detailed explanation (especially for TOEIC)
+  passageText   String?  // For TOEIC reading passages
+  orderIndex    Int      // Order of question in the set
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  questionSetId String
+  questionSet   QuestionSet @relation(fields: [questionSetId], references: [id], onDelete: Cascade)
+
+  userAnswers   UserAnswer[]
+
+  @@map("questions")
+}
+
+model Attempt {
+  id              String   @id @default(uuid())
+  score           Int?     // Percentage or total correct
+  totalQuestions  Int
+  correctAnswers  Int      @default(0)
+  isCompleted     Boolean  @default(false)
+  timeTaken       Int?     // in seconds
+  startedAt       DateTime @default(now())
+  completedAt     DateTime?
+  
+  // Configuration options
+  practiceMode    Boolean  @default(false) // Retry only incorrect
+  timedMode       Boolean  @default(false)
+  customTimeLimit Int?     // in seconds
+  autoAdvance     Boolean  @default(false)
+  autoAdvanceTime Int?     // in seconds
+
+  userId          String
+  user            User     @relation(fields: [userId], references: [id])
+
+  questionSetId   String
+  questionSet     QuestionSet @relation(fields: [questionSetId], references: [id], onDelete: Cascade)
+
+  userAnswers     UserAnswer[]
+
+  @@map("attempts")
+}
+
+model UserAnswer {
+  id              String   @id @default(uuid())
+  selectedOption  String   // JSON string: number or number[] (e.g., "1" or "[0,2]")
+  isCorrect       Boolean
+  answeredAt      DateTime @default(now())
+
+  attemptId       String
+  attempt         Attempt  @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+
+  questionId      String
+  question        Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@map("user_answers")
+}
