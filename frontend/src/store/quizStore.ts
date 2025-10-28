@@ -17,7 +17,7 @@ interface QuizState {
   reset: () => void;
 }
 
-export const useQuizStore = create<QuizState>((set) => ({
+export const useQuizStore = create<QuizState>((set, get) => ({
   attempt: null,
   questions: [],
   currentQuestionIndex: 0,
@@ -54,8 +54,8 @@ export const useQuizStore = create<QuizState>((set) => ({
     }),
 
   getAnswer: (questionId: string): AnswerResponse | undefined => {
-    // Access state directly from set callback
-    return undefined;
+    const state = get();
+    return state.answers.get(questionId);
   },
 
   reset: () =>
