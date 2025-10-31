@@ -4,6 +4,7 @@ import { attemptService } from '../../services/attemptService';
 import { useQuizStore } from '../../store/quizStore';
 import { Question } from '../../types';
 import { highlightCode } from '../../utils/syntaxHighlight';
+import { parseBoldText } from '../../utils/textFormat';
 import './SchoolQuiz.css';
 
 interface QuestionWithRetries extends Question {
@@ -154,21 +155,7 @@ export default function SchoolQuiz() {
       }
       setSelectedOptions(newSelectedOptions);
 
-      // In "after-submit" mode, don't auto-submit, let user click Next button
-      if (showAnswerMode === 'after-submit') {
-        return;
-      }
-
-      // Get the correct answer count from originalCorrectAnswer (before shuffle)
-      const correctAnswerSource = currentQuestion.originalCorrectAnswer || currentQuestion.correctAnswer;
-      const correctAnswerCount = Array.isArray(correctAnswerSource) 
-        ? correctAnswerSource.length 
-        : 1;
-      
-      // Auto-submit in immediate mode when selected count matches correct answer count
-      if (newSelectedOptions.size === correctAnswerCount) {
-        await submitAnswer(Array.from(newSelectedOptions));
-      }
+      // Don't auto-submit, let user click Submit button
       return;
     }
 
@@ -383,6 +370,11 @@ export default function SchoolQuiz() {
     }
   };
 
+  const handleSubmitMultipleChoice = async () => {
+    if (selectedOptions.size === 0) return;
+    await submitAnswer(Array.from(selectedOptions));
+  };
+
   if (!questionQueue.length) return <div className="container"><div className="spinner" /></div>;
 
   const currentQuestion = questionQueue[currentQuestionIndex];
@@ -516,10 +508,31 @@ export default function SchoolQuiz() {
           })}
         </div>
 
-        {/* Show Next button */}
+        {/* Show explanation in immediate mode when answer is wrong */}
+        {showAnswerMode === 'immediate' && feedback && !feedback.isCorrect && currentQuestion.explanation && (
+          <div className="explanation-box">
+            <h4 className="explanation-title">💡 Giải thích</h4>
+            <p 
+              className="explanation-text"
+              dangerouslySetInnerHTML={{ __html: parseBoldText(currentQuestion.explanation) }}
+            />
+          </div>
+        )}
+
+        {/* Show Submit/Next button */}
         <div className="next-button-container">
-          {/* Show button when answer is selected or when feedback is shown (immediate mode only) */}
-          {(hasAnswer || feedback) && (
+          {/* Multiple choice in immediate mode: Show Submit button when answer selected but not submitted */}
+          {isMultipleChoice && showAnswerMode === 'immediate' && hasAnswer && !feedback && (
+            <button 
+              onClick={handleSubmitMultipleChoice} 
+              className="btn btn-primary next-button"
+            >
+              Submit
+            </button>
+          )}
+
+          {/* Show Next button after feedback or for single choice */}
+          {((!isMultipleChoice && hasAnswer) || feedback) && (
             <>
               <button onClick={() => handleNext()} className="btn btn-primary next-button">
                 {isPracticeMode && answeredQuestions.size < totalUniqueQuestions 

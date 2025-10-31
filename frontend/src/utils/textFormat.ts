@@ -19,5 +19,8 @@ export const parseBoldText = (text: string): string => {
   // Replace **text** with <strong>text</strong>
   result = result.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
   
+  // Replace \n with <br> for line breaks
+  result = result.replace(/\\n/g, '<br>').replace(/\n/g, '<br>');
+  
   return result;
 };
