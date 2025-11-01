@@ -12,7 +12,8 @@ interface QuestionWithRetries extends Question {
   originalCorrectAnswer?: number | number[];
   optionMapping?: number[]; 
   isRetrying?: boolean; 
-  displayIndex?: number; 
+  displayIndex?: number;
+  retryCount?: number; // Track number of retries for this question
 }
 
 export default function SchoolQuiz() {
@@ -31,15 +32,17 @@ export default function SchoolQuiz() {
   const [isPracticeMode, setIsPracticeMode] = useState(false);
   const [showAnswerMode, setShowAnswerMode] = useState<'immediate' | 'after-submit'>('immediate');
   const [autoAdvanceTimer, setAutoAdvanceTimer] = useState<NodeJS.Timeout | null>(null);
+  const [timer, setTimer] = useState(0);
+  const [timeLimit, setTimeLimit] = useState<number | null>(null);
+  const [showTimeWarning, setShowTimeWarning] = useState(false);
+  const [retryCountMap, setRetryCountMap] = useState<Map<string, number>>(new Map()); // Track retry count per question ID
 
   useEffect(() => {
     initializeQuiz();
   }, []);
 
-  // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Only allow navigation if feedback is shown (answer submitted)
       if (!feedback) return;
       
       if (e.key === 'ArrowRight' || e.key === 'Enter') {
@@ -52,7 +55,6 @@ export default function SchoolQuiz() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [feedback, currentQuestionIndex, questionQueue, answeredQuestions, isPracticeMode, totalUniqueQuestions]);
 
-  // Cleanup timer on unmount
   useEffect(() => {
     return () => {
       if (autoAdvanceTimer) {
@@ -60,6 +62,29 @@ export default function SchoolQuiz() {
       }
     };
   }, [autoAdvanceTimer]);
+
+  // Timer for timed mode
+  useEffect(() => {
+    if (!timeLimit) return;
+    
+    const interval = setInterval(() => setTimer(t => t + 1), 1000);
+    return () => clearInterval(interval);
+  }, [timeLimit]);
+
+  // Auto-submit when time limit is reached
+  useEffect(() => {
+    if (timeLimit && timer >= timeLimit) {
+      completeQuiz();
+    }
+  }, [timer, timeLimit]);
+
+  // Show warning when 5 minutes remaining
+  useEffect(() => {
+    if (timeLimit && timer === timeLimit - 300) { // 300 seconds = 5 minutes
+      setShowTimeWarning(true);
+      setTimeout(() => setShowTimeWarning(false), 5000); // Hide after 5 seconds
+    }
+  }, [timer, timeLimit]);
 
   const initializeQuiz = async () => {
     try {
@@ -69,14 +94,18 @@ export default function SchoolQuiz() {
       setIsPracticeMode(config.practiceMode || false);
       setShowAnswerMode(config.showAnswerMode || 'immediate');
       
+      // Set time limit if timedMode is enabled
+      if (config.timedMode && config.customTimeLimit) {
+        setTimeLimit(config.customTimeLimit);
+      }
+      
       let initialQuestions = ((newAttempt.questionSet as any)?.questions || []).map((q: Question, idx: number) => ({
         ...q,
         originalIndex: idx,
         originalCorrectAnswer: q.correctAnswer,
-        displayIndex: idx + 1, // Store 1-based display position
+        displayIndex: idx + 1, 
       }));
       
-      // Shuffle questions if configured
       if (config.shuffleQuestions) {
         initialQuestions = shuffleArray(initialQuestions);
       }
@@ -252,10 +281,16 @@ export default function SchoolQuiz() {
         if (isPracticeMode && !wasCorrect) {
           // Only add retry if this question hasn't been answered correctly before
           if (!answeredQuestions.has(currentQuestion.id)) {
+            // Increment retry count for this question
+            const currentRetryCount = retryCountMap.get(currentQuestion.id) || 0;
+            const newRetryCount = currentRetryCount + 1;
+            setRetryCountMap(prev => new Map(prev).set(currentQuestion.id, newRetryCount));
+            
             const retryQuestion = { 
               ...currentQuestion,
               isRetrying: true, // Mark as retrying
               displayIndex: currentQuestion.displayIndex, // Keep original display position
+              retryCount: newRetryCount, // Add retry count to question
             };
 
             const remainingQuestions = questionQueue.slice(currentQuestionIndex + 1);
@@ -306,10 +341,16 @@ export default function SchoolQuiz() {
       
       // Only add retry if this question hasn't been answered correctly before
       if (!answeredQuestions.has(currentQuestion.id)) {
+        // Increment retry count for this question
+        const currentRetryCount = retryCountMap.get(currentQuestion.id) || 0;
+        const newRetryCount = currentRetryCount + 1;
+        setRetryCountMap(prev => new Map(prev).set(currentQuestion.id, newRetryCount));
+        
         const retryQuestion = { 
           ...currentQuestion,
           isRetrying: true, // Mark as retrying
           displayIndex: currentQuestion.displayIndex, // Keep original display position
+          retryCount: newRetryCount, // Add retry count to question
         };
 
         // Get remaining questions after current
@@ -408,6 +449,26 @@ export default function SchoolQuiz() {
 
   return (
     <div className="school-quiz-container">
+      {showTimeWarning && (
+        <div style={{
+          position: 'fixed',
+          top: '20px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          backgroundColor: '#fef3c7',
+          border: '2px solid #f59e0b',
+          borderRadius: '8px',
+          padding: '12px 24px',
+          zIndex: 9999,
+          boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+          fontSize: '14px',
+          fontWeight: '600',
+          color: '#92400e'
+        }}>
+          ⚠️ Bài làm của bạn sẽ tự động nộp sau 5 phút
+        </div>
+      )}
+      
       {/* Header with progress bar and action buttons */}
       <div className="school-quiz-header">
         <div className="header-content" style={{ padding: 0 }}>
@@ -443,7 +504,11 @@ export default function SchoolQuiz() {
         <div className="question-number">
           {progressText}
           {(currentQuestion.isRetry || currentQuestion.isRetrying) && (
-            <span className="retry-badge">Làm lại</span>
+            <span className="retry-badge">
+              {currentQuestion.retryCount && currentQuestion.retryCount > 1 
+                ? `Làm lại #${currentQuestion.retryCount}` 
+                : 'Làm lại'}
+            </span>
           )}
           {isMultipleChoice && (
             <span className="question-type-badge">Chọn nhiều đáp án</span>

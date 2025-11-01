@@ -17,7 +17,7 @@ interface ImportedQuestion {
 export class QuestionSetController {
   async getAll(req: AuthRequest, res: Response, next: NextFunction) {
     try {
-      const { mode, includeUnpublished } = req.query;
+      const { mode, includeUnpublished, subjectId } = req.query;
       
       // Only admins can see unpublished question sets
       const showUnpublished = includeUnpublished === 'true' && req.userRole === 'ADMIN';
@@ -26,6 +26,7 @@ export class QuestionSetController {
         where: {
           ...(showUnpublished ? {} : { isPublished: true }),
           ...(mode && { mode: mode as any }),
+          ...(subjectId && { subjectId: subjectId as string }),
         },
         include: {
           _count: {
@@ -36,6 +37,13 @@ export class QuestionSetController {
               id: true,
               name: true,
               email: true,
+            },
+          },
+          subject: {
+            select: {
+              id: true,
+              name: true,
+              color: true,
             },
           },
         },
@@ -143,7 +151,7 @@ export class QuestionSetController {
 
   async create(req: AuthRequest, res: Response, next: NextFunction) {
     try {
-      const { title, description, mode, timeLimit, isPublished } = req.body;
+      const { title, description, mode, timeLimit, isPublished, subjectId } = req.body;
       const userId = req.userId!;
 
       const questionSet = await prisma.questionSet.create({
@@ -154,10 +162,18 @@ export class QuestionSetController {
           timeLimit,
           isPublished: isPublished || false,
           creatorId: userId,
+          ...(subjectId && { subjectId }),
         },
         include: {
           _count: {
             select: { questions: true },
+          },
+          subject: {
+            select: {
+              id: true,
+              name: true,
+              color: true,
+            },
           },
         },
       });
@@ -174,7 +190,7 @@ export class QuestionSetController {
   async update(req: AuthRequest, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;
-      const { title, description, timeLimit, isPublished } = req.body;
+      const { title, description, timeLimit, isPublished, subjectId } = req.body;
 
       const questionSet = await prisma.questionSet.update({
         where: { id },
@@ -183,6 +199,16 @@ export class QuestionSetController {
           description,
           timeLimit,
           isPublished,
+          ...(subjectId !== undefined && { subjectId }),
+        },
+        include: {
+          subject: {
+            select: {
+              id: true,
+              name: true,
+              color: true,
+            },
+          },
         },
       });
 

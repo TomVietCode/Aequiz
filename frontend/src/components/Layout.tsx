@@ -23,6 +23,7 @@ export default function Layout() {
           <div className="container">
             <div className="header-content">
               <Link to="/" className="logo">
+                <img src="/aequiz.png" alt="Aequiz Logo" className="logo-image" />
                 AEQUIZ
               </Link>
               <nav className="nav">

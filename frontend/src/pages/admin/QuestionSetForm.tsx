@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { questionSetService } from '../../services/questionSetService';
-import { QuizMode } from '../../types';
+import { subjectService } from '../../services/subjectService';
+import { QuizMode, Subject } from '../../types';
 import './QuestionSetForm.css';
 // Admin Question Set Form
 
@@ -10,20 +11,31 @@ export default function QuestionSetForm() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [subjects, setSubjects] = useState<Subject[]>([]);
   
   const [formData, setFormData] = useState({
     title: '',
     description: '',
     mode: 'TOEIC' as QuizMode,
-    timeLimit: '',
     isPublished: false,
+    subjectId: '',
   });
 
   useEffect(() => {
+    loadSubjects();
     if (id) {
       loadQuestionSet();
     }
   }, [id]);
+
+  const loadSubjects = async () => {
+    try {
+      const data = await subjectService.getAll();
+      setSubjects(data);
+    } catch (error) {
+      console.error('Failed to load subjects', error);
+    }
+  };
 
   const loadQuestionSet = async () => {
     try {
@@ -32,8 +44,8 @@ export default function QuestionSetForm() {
         title: data.title,
         description: data.description || '',
         mode: data.mode,
-        timeLimit: data.timeLimit ? (data.timeLimit / 60).toString() : '',
         isPublished: data.isPublished,
+        subjectId: data.subjectId || '',
       });
     } catch (error) {
       console.error('Failed to load question set', error);
@@ -51,8 +63,8 @@ export default function QuestionSetForm() {
         title: formData.title,
         description: formData.description || undefined,
         mode: formData.mode,
-        timeLimit: formData.timeLimit ? parseInt(formData.timeLimit) * 60 : undefined,
         isPublished: formData.isPublished,
+        subjectId: formData.subjectId || undefined,
       };
 
       if (id) {
@@ -133,48 +145,52 @@ export default function QuestionSetForm() {
             />
           </div>
 
-          <div className="form-row">
+          <div className="form-group">
+            <label htmlFor="mode" className="form-label required">
+              Loại bài thi
+            </label>
+            <select
+              id="mode"
+              name="mode"
+              className="form-select"
+              value={formData.mode}
+              onChange={handleChange}
+              required
+            >
+              <option value="TOEIC">📚TOEIC Reading</option>
+              <option value="SCHOOL">🎓 Luyện trắc nghiệm</option>
+            </select>
+            <p className="form-help">
+              {formData.mode === 'TOEIC' 
+                ? 'Học sinh có thể xem đáp án và giải thích sau khi kiểm tra từng câu'
+                : 'Chế độ thi trắc nghiệm - học sinh có thể cấu hình thời gian khi bắt đầu làm bài'}
+            </p>
+          </div>
+
+          {formData.mode === 'SCHOOL' && (
             <div className="form-group">
-              <label htmlFor="mode" className="form-label required">
-                Loại bài thi
+              <label htmlFor="subjectId" className="form-label">
+                Môn học
               </label>
               <select
-                id="mode"
-                name="mode"
+                id="subjectId"
+                name="subjectId"
                 className="form-select"
-                value={formData.mode}
+                value={formData.subjectId}
                 onChange={handleChange}
-                required
               >
-                <option value="TOEIC">📚TOEIC Reading</option>
-                <option value="SCHOOL">🎓 Luyện trắc nghiệm</option>
+                <option value="">Chọn môn học (tùy chọn)</option>
+                {subjects.map((subject) => (
+                  <option key={subject.id} value={subject.id}>
+                    {subject.name}
+                  </option>
+                ))}
               </select>
               <p className="form-help">
-                {formData.mode === 'TOEIC' 
-                  ? 'Học sinh có thể xem đáp án và giải thích sau khi kiểm tra từng câu'
-                  : 'Chế độ thi có giới hạn thời gian - học sinh trả lời từng câu một mà không quay lại'}
+                Chọn môn học để dễ dàng phân loại và tìm kiếm
               </p>
             </div>
-
-            <div className="form-group">
-              <label htmlFor="timeLimit" className="form-label">
-                Giới hạn thời gian (phút)
-              </label>
-              <input
-                type="number"
-                id="timeLimit"
-                name="timeLimit"
-                className="form-input"
-                value={formData.timeLimit}
-                onChange={handleChange}
-                min="1"
-                placeholder="Tùy chọn"
-              />
-              <p className="form-help">
-                Để trống nếu không giới hạn thời gian
-              </p>
-            </div>
-          </div>
+          )}
 
           <div className="form-group">
             <label className="checkbox-label">
