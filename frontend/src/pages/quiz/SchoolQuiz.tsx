@@ -573,8 +573,8 @@ export default function SchoolQuiz() {
           })}
         </div>
 
-        {/* Show explanation in immediate mode when answer is wrong */}
-        {showAnswerMode === 'immediate' && feedback && !feedback.isCorrect && currentQuestion.explanation && (
+        {/* Show explanation in immediate mode when feedback is available (correct or incorrect) */}
+        {showAnswerMode === 'immediate' && feedback && currentQuestion.explanation && (
           <div className="explanation-box">
             <h4 className="explanation-title">💡 Giải thích</h4>
             <p 
