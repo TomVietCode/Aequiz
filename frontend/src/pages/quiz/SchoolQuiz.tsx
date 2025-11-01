@@ -9,10 +9,10 @@ import './SchoolQuiz.css';
 
 interface QuestionWithRetries extends Question {
   originalIndex?: number;
-  originalCorrectAnswer?: number | number[]; // Store original correct answer before shuffle
-  optionMapping?: number[]; // Map shuffled index to original index
-  isRetrying?: boolean; // Mark when question is being retried due to wrong answer
-  displayIndex?: number; // Store the display position (1-based) for showing in progress text
+  originalCorrectAnswer?: number | number[];
+  optionMapping?: number[]; 
+  isRetrying?: boolean; 
+  displayIndex?: number; 
 }
 
 export default function SchoolQuiz() {
