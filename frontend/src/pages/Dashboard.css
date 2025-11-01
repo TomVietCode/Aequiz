@@ -214,6 +214,52 @@
   grid-column: 1 / -1;
 }
 
+/* Subject Filter */
+.subject-filter {
+  width: 100%;
+  max-width: 600px;
+}
+
+.subject-select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 0.9375rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.75rem;
+  background-color: white;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s;
+  outline: none;
+}
+
+.subject-select:hover {
+  border-color: #d1d5db;
+}
+
+.subject-select:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+/* Subject Badge in Quiz Card */
+.quiz-card-title-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.subject-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  white-space: nowrap;
+  width: fit-content;
+}
+
 @media (max-width: 768px) {
   .dashboard-title {
     font-size: 2rem;

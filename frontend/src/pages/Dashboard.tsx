@@ -1,25 +1,42 @@
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { questionSetService } from "../services/questionSetService"
-import { QuestionSet } from "../types"
+import { subjectService } from "../services/subjectService"
+import { QuestionSet, Subject } from "../types"
 import "./Dashboard.css"
 
 export default function Dashboard() {
   const [toeicSets, setToeicSets] = useState<QuestionSet[]>([])
   const [schoolSets, setSchoolSets] = useState<QuestionSet[]>([])
+  const [subjects, setSubjects] = useState<Subject[]>([])
   const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState("")
   const [filterMode, setFilterMode] = useState<"all" | "toeic" | "school">("all")
+  const [selectedSubject, setSelectedSubject] = useState<string>("")
 
   useEffect(() => {
     loadQuestionSets()
+    loadSubjects()
   }, [])
+
+  useEffect(() => {
+    loadQuestionSets()
+  }, [selectedSubject])
+
+  const loadSubjects = async () => {
+    try {
+      const allSubjects = await subjectService.getAll()
+      setSubjects(allSubjects)
+    } catch (error) {
+      console.error("Failed to load subjects", error)
+    }
+  }
 
   const loadQuestionSets = async () => {
     try {
       const [toeic, school] = await Promise.all([
-        questionSetService.getAll("TOEIC"),
-        questionSetService.getAll("SCHOOL"),
+        questionSetService.getAll("TOEIC", selectedSubject),
+        questionSetService.getAll("SCHOOL", selectedSubject),
       ])
       setToeicSets(toeic)
       setSchoolSets(school)
@@ -79,13 +96,19 @@ export default function Dashboard() {
         <div className="filter-buttons">
           <button
             className={`filter-btn ${filterMode === "all" ? "active" : ""}`}
-            onClick={() => setFilterMode("all")}
+            onClick={() => {
+              setFilterMode("all")
+              setSelectedSubject("")
+            }}
           >
             Tất cả
           </button>
           <button
             className={`filter-btn ${filterMode === "toeic" ? "active" : ""}`}
-            onClick={() => setFilterMode("toeic")}
+            onClick={() => {
+              setFilterMode("toeic")
+              setSelectedSubject("")
+            }}
           >
             📚 TOEIC
           </button>
@@ -96,6 +119,24 @@ export default function Dashboard() {
             🎓 Trắc nghiệm
           </button>
         </div>
+
+        {/* Subject Filter - Only show for school mode */}
+        {filterMode === "school" && subjects.length > 0 && (
+          <div className="subject-filter">
+            <select
+              className="subject-select"
+              value={selectedSubject}
+              onChange={(e) => setSelectedSubject(e.target.value)}
+            >
+              <option value="">Tất cả môn học</option>
+              {subjects.map((subject) => (
+                <option key={subject.id} value={subject.id}>
+                  {subject.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
       </div>
 
       {(filterMode === "all" || filterMode === "toeic") && (
@@ -162,7 +203,20 @@ function QuizCard({ questionSet }: { questionSet: QuestionSet }) {
   return (
     <div className="quiz-card card">
       <div className="quiz-card-header">
-        <h4 className="quiz-card-title">{questionSet.title}</h4>
+        <div className="quiz-card-title-row">
+          <h4 className="quiz-card-title">{questionSet.title}</h4>
+          {questionSet.subject && (
+            <span 
+              className="subject-badge" 
+              style={{ 
+                backgroundColor: questionSet.subject.color || '#3B82F6',
+                color: '#fff'
+              }}
+            >
+              {questionSet.subject.name}
+            </span>
+          )}
+        </div>
         {questionSet.userProgress ? (
           <span className={`badge ${getBadgeClass()}`}>
             {questionSet.userProgress.score?.toFixed(0)}% | Đúng:{" "}

@@ -2,10 +2,12 @@ import api from './api';
 import { QuestionSet, Question } from '../types';
 
 export const questionSetService = {
-  async getAll(mode?: 'TOEIC' | 'SCHOOL'): Promise<QuestionSet[]> {
-    const response = await api.get('/question-sets', {
-      params: mode ? { mode } : {},
-    });
+  async getAll(mode?: 'TOEIC' | 'SCHOOL', subjectId?: string): Promise<QuestionSet[]> {
+    const params: any = {};
+    if (mode) params.mode = mode;
+    if (subjectId) params.subjectId = subjectId;
+    
+    const response = await api.get('/question-sets', { params });
     return response.data.data.questionSets;
   },
 

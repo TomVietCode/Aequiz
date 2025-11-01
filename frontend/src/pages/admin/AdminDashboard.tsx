@@ -1,17 +1,21 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { questionSetService } from '../../services/questionSetService';
-import { QuestionSet } from '../../types';
+import { subjectService } from '../../services/subjectService';
+import { QuestionSet, Subject } from '../../types';
 import './AdminDashboard.css';
 
 export default function AdminDashboard() {
   const [questionSets, setQuestionSets] = useState<QuestionSet[]>([]);
+  const [subjects, setSubjects] = useState<Subject[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<'ALL' | 'TOEIC' | 'SCHOOL'>('ALL');
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedSubject, setSelectedSubject] = useState<string>('');
 
   useEffect(() => {
     loadQuestionSets();
+    loadSubjects();
   }, []);
 
   const loadQuestionSets = async () => {
@@ -22,6 +26,15 @@ export default function AdminDashboard() {
       console.error('Failed to load question sets', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const loadSubjects = async () => {
+    try {
+      const data = await subjectService.getAll();
+      setSubjects(data);
+    } catch (error) {
+      console.error('Failed to load subjects', error);
     }
   };
 
@@ -51,12 +64,13 @@ export default function AdminDashboard() {
     }
   };
 
-  // Filter question sets based on active tab and search query
+  // Filter question sets based on active tab, search query, and subject
   const filteredQuestionSets = questionSets.filter(set => {
     const matchesTab = activeTab === 'ALL' || set.mode === activeTab;
     const matchesSearch = set.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          (set.description?.toLowerCase().includes(searchQuery.toLowerCase()));
-    return matchesTab && matchesSearch;
+    const matchesSubject = !selectedSubject || set.subjectId === selectedSubject;
+    return matchesTab && matchesSearch && matchesSubject;
   });
 
   // Count by mode
@@ -78,9 +92,14 @@ export default function AdminDashboard() {
           <h1 className="admin-title">Quản Trị Hệ Thống</h1>
           <p className="admin-subtitle">Quản lý bộ câu hỏi và câu hỏi</p>
         </div>
-        <Link to="/admin/question-set/new" className="btn btn-primary">
-          + Tạo bộ câu hỏi mới
-        </Link>
+        <div className="admin-header-actions">
+          <Link to="/admin/subjects" className="btn btn-secondary">
+            📚 Quản lý Môn học
+          </Link>
+          <Link to="/admin/question-set/new" className="btn btn-primary">
+            + Tạo bộ câu hỏi mới
+          </Link>
+        </div>
       </div>
 
       <div className="stats-grid">
@@ -120,13 +139,19 @@ export default function AdminDashboard() {
             <div className="tabs">
               <button
                 className={`tab ${activeTab === 'ALL' ? 'active' : ''}`}
-                onClick={() => setActiveTab('ALL')}
+                onClick={() => {
+                  setActiveTab('ALL');
+                  setSelectedSubject('');
+                }}
               >
                 Tất cả ({questionSets.length})
               </button>
               <button
                 className={`tab ${activeTab === 'TOEIC' ? 'active' : ''}`}
-                onClick={() => setActiveTab('TOEIC')}
+                onClick={() => {
+                  setActiveTab('TOEIC');
+                  setSelectedSubject('');
+                }}
               >
                 📚 TOEIC ({toeicCount})
               </button>
@@ -139,6 +164,26 @@ export default function AdminDashboard() {
             </div>
           </div>
         </div>
+        
+        {/* Subject filter - only show when SCHOOL tab is active */}
+        {activeTab === 'SCHOOL' && subjects.length > 0 && (
+          <div className="filter-controls" style={{ marginTop: '1rem' }}>
+            <select
+              id="subjectFilter"
+              value={selectedSubject}
+              onChange={(e) => setSelectedSubject(e.target.value)}
+              className="search-input"
+              style={{ maxWidth: '300px' }}
+            >
+              <option value="">Tất cả môn học</option>
+              {subjects.map((subject) => (
+                <option key={subject.id} value={subject.id}>
+                  {subject.name} ({questionSets.filter(s => s.mode === 'SCHOOL' && s.subjectId === subject.id).length})
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
         
         {filteredQuestionSets.length === 0 ? (
           <div className="empty-state">
@@ -189,6 +234,17 @@ export default function AdminDashboard() {
                       ⏱️ {Math.floor(set.timeLimit / 60)} phút
                     </span>
                   )}
+                  {set.subject && (
+                    <span 
+                      className="meta-item subject-tag"
+                      style={{ 
+                        backgroundColor: set.subject.color || '#3B82F6',
+                        color: '#fff'
+                      }}
+                    >
+                      {set.subject.name}
+                    </span>
+                  )}
                   <span className="meta-item">
                     Tạo ngày {new Date(set.createdAt).toLocaleDateString('vi-VN')}
                   </span>
@@ -215,7 +271,7 @@ export default function AdminDashboard() {
                   </button>
                   <button
                     onClick={() => handleDelete(set.id)}
-                    className="btn btn-sm btn-danger"
+                    className="btn btn-sm btn-secondary"
                   >
                     🗑️ Xóa
                   </button>

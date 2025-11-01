@@ -8,6 +8,7 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 import QuestionSetForm from './pages/admin/QuestionSetForm';
 import QuestionListPage from './pages/admin/QuestionListPage';
 import QuestionForm from './pages/admin/QuestionForm';
+import SubjectManagement from './pages/admin/SubjectManagement';
 import QuizConfig from './pages/quiz/QuizConfig';
 import ToeicQuiz from './pages/quiz/ToeicQuiz';
 import SchoolQuiz from './pages/quiz/SchoolQuiz';
@@ -29,6 +30,7 @@ function App() {
           {user?.role === 'ADMIN' && (
             <>
               <Route path="/admin" element={<AdminDashboard />} />
+              <Route path="/admin/subjects" element={<SubjectManagement />} />
               <Route path="/admin/question-set/new" element={<QuestionSetForm />} />
               <Route path="/admin/question-set/:id/edit" element={<QuestionSetForm />} />
               <Route path="/admin/question-set/:id/questions" element={<QuestionListPage />} />

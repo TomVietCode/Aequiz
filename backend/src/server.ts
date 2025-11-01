@@ -5,6 +5,7 @@ import { authRoutes } from './routes/auth.routes';
 import { questionSetRoutes } from './routes/questionSet.routes';
 import { questionRoutes } from './routes/question.routes';
 import { attemptRoutes } from './routes/attempt.routes';
+import subjectRoutes from './routes/subject.routes';
 import { errorHandler } from './middleware/errorHandler';
 
 dotenv.config();
@@ -27,6 +28,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/question-sets', questionSetRoutes);
 app.use('/api/questions', questionRoutes);
 app.use('/api/attempts', attemptRoutes);
+app.use('/api/subjects', subjectRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {

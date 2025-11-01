@@ -423,7 +423,7 @@ export default function QuestionForm() {
 
           <div className="form-group">
             <label htmlFor="explanation" className="form-label">
-              Giải thích (Tùy chọn nhưng nên có)
+              Giải thích
             </label>
             <textarea
               id="explanation"

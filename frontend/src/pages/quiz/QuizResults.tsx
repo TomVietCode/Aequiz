@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { attemptService } from '../../services/attemptService';
 import { Attempt } from '../../types';
+import { parseBoldText } from '../../utils/textFormat';
 import './QuizResults.css';
 
 export default function QuizResults() {
@@ -225,7 +226,7 @@ export default function QuizResults() {
                   {question.explanation && (
                     <div className="answer-explanation">
                       <strong>Giải thích:</strong>
-                      <p>{question.explanation}</p>
+                      <p dangerouslySetInnerHTML={{ __html: parseBoldText(question.explanation) }} />
                     </div>
                   )}
                 </div>

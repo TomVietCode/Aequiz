@@ -9,6 +9,18 @@ export interface User {
   role: UserRole;
 }
 
+export interface Subject {
+  id: string;
+  name: string;
+  description?: string;
+  color?: string;
+  createdAt: string;
+  updatedAt: string;
+  _count?: {
+    questionSets: number;
+  };
+}
+
 export interface QuestionSet {
   id: string;
   title: string;
@@ -22,6 +34,12 @@ export interface QuestionSet {
     id: string;
     name: string;
     email: string;
+  };
+  subjectId?: string;
+  subject?: {
+    id: string;
+    name: string;
+    color?: string;
   };
   _count?: {
     questions: number;

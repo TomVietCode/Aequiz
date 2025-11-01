@@ -17,6 +17,8 @@ export default function ToeicQuiz() {
   const [timer, setTimer] = useState(0);
   const [showSidebar, setShowSidebar] = useState(false);
   const [showAnswerMode, setShowAnswerMode] = useState<'immediate' | 'after-submit'>('immediate');
+  const [timeLimit, setTimeLimit] = useState<number | null>(null);
+  const [showTimeWarning, setShowTimeWarning] = useState(false);
 
   useEffect(() => {
     initializeQuiz();
@@ -31,6 +33,11 @@ export default function ToeicQuiz() {
       
       // Set showAnswerMode from config
       setShowAnswerMode(config.showAnswerMode || 'immediate');
+      
+      // Set time limit if timedMode is enabled
+      if (config.timedMode && config.customTimeLimit) {
+        setTimeLimit(config.customTimeLimit);
+      }
     } catch (error) {
       console.error('Failed to start quiz', error);
     }
@@ -40,6 +47,21 @@ export default function ToeicQuiz() {
     const interval = setInterval(() => setTimer(t => t + 1), 1000);
     return () => clearInterval(interval);
   }, []);
+
+  // Auto-submit when time limit is reached
+  useEffect(() => {
+    if (timeLimit && timer >= timeLimit) {
+      handleFinish();
+    }
+  }, [timer, timeLimit]);
+
+  // Show warning when 5 minutes remaining
+  useEffect(() => {
+    if (timeLimit && timer === timeLimit - 300) { // 300 seconds = 5 minutes
+      setShowTimeWarning(true);
+      setTimeout(() => setShowTimeWarning(false), 5000); // Hide after 5 seconds
+    }
+  }, [timer, timeLimit]);
 
   useEffect(() => {
     // Load saved answer for current question
@@ -180,8 +202,28 @@ export default function ToeicQuiz() {
 
   return (
     <div className="toeic-quiz-container">
+      {showTimeWarning && (
+        <div style={{
+          position: 'fixed',
+          top: '80px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          backgroundColor: '#fef3c7',
+          border: '2px solid #f59e0b',
+          borderRadius: '8px',
+          padding: '12px 24px',
+          zIndex: 9999,
+          boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+          fontSize: '14px',
+          fontWeight: '600',
+          color: '#92400e'
+        }}>
+          ⚠️ Bài làm của bạn sẽ tự động nộp sau 5 phút
+        </div>
+      )}
+      
       <div className="toeic-main-header">
-        <h1 className="main-header-title">HỆ THỐNG THI TRỰC TUYẾN</h1>
+        <h1 className="main-header-title"></h1>
         <div className="main-header-controls">
           <button className="btn-submit" onClick={handleFinish}>
             NỘP BÀI

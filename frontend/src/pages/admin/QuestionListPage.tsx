@@ -216,7 +216,7 @@ export default function QuestionListPage() {
                 </Link>
                 <button
                   onClick={() => handleDelete(question.id)}
-                  className="btn btn-sm btn-danger"
+                  className="btn btn-sm btn-secondary"
                 >
                   🗑️ Xóa
                 </button>
@@ -243,6 +243,7 @@ export default function QuestionListPage() {
       {showJsonModal && (
         <ImportJsonModal
           questionSetId={id!}
+          mode={questionSet.mode}
           onClose={() => setShowJsonModal(false)}
           onSuccess={() => {
             setShowJsonModal(false);
